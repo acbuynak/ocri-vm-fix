@@ -75,6 +75,10 @@ add_ros2_example_package() {
 	rm -f /home/student/Desktop/'README ON FIRST-LOGIN.txt'
 	mv ocri-vm-fix-main/'README ON FIRST-LOGIN.txt' /home/student/Desktop/
 	
+	# Giver ownership to user account
+	chown -R student: /home/student/AA_DEVL
+	chown student: /home/student/Desktop/'README ON FIRST-LOGIN.txt'
+	
 	# Remove Downloaded Folder
 	rm -rf ocri-vm-fix-main
 	rm -rf ocri-vm-fix-main.zip
