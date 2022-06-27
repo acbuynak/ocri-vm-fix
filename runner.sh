@@ -68,12 +68,15 @@ add_ros2_example_package() {
 	unzip -o ocri-vm-fix-main.zip
 	
 	# Wipe old folder & replace with new examples folder
-	rm -rf ~/AA_DEVL
+	rm -rf /home/student/AA_DEVL
 	mv ocri-vm-fix-main/AA_DEVL /home/student/
 	
 	# Wipe old welcome message & replace
-	rm -f ~/Desktop/'README ON FIRST-LOGIN.txt'
+	rm -f /home/student/Desktop/'README ON FIRST-LOGIN.txt'
 	mv ocri-vm-fix-main/'README ON FIRST-LOGIN.txt' /home/student/Desktop/
+	
+	# Remove Downloaded Folder
+	rm -rf ocri-vm-fix-main
 }
 
 
@@ -119,11 +122,11 @@ main() {
     
 	# Apply Fix
 	printf "\n\n ${COL_LIGHT_GREEN}Applying Fixes & Installing Additional ROS Packages${COL_NC}\n\n" 
-	#install_fixes
+	install_fixes
 	
 	# Install Simulation Environment (ROS Ignition/Gazebo)
 	printf "\n\n COL_LIGHT_GREENInstalling ROS Physics Simulation Environment${COL_NC}\n\n"
-	#install_ros_ignition
+	install_ros_ignition
 	
 	# Example Packages
 	printf "\n\n COL_LIGHT_GREENUpdating ROS2 Example Package${COL_NC}\n\n"
@@ -134,7 +137,7 @@ main() {
 	# rosdep update
 	
 	# Final APT Cleanup
-	#apt autoremove -y
+	apt autoremove -y
 	
 	# Report Done
 	printf "\n\n ${TICK}${COL_LIGHT_GREEN}  DONE! You're ready to learn ROS!${COL_NC}\n\n"
