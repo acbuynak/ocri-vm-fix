@@ -96,15 +96,15 @@ main() {
 
 	else
         	# Otherwise, they do not have enough privileges, so let the user know
-		printf "   %b  Script called with non-root privileges.\\n" "${CROSS}"
+		printf "%b  Script called with non-root privileges.\\n" "${CROSS}"
 		printf "      This VM fix requires elevated privileges to install and run\\n"
 		printf "      Performing a Sudo utility check... \\n"
 		
 		sleep 1
 		
 		# Attempt again and call for user.
-		printf "\n\n  %b   Restarting command launch with root privileges.\\n" "${TICK}"
-		printf "      You may be prompted to enter your password.\\n"
+		printf "\n\n%b   Restarting command launch with root privileges.\\n" "${TICK}"
+		printf "      You may be prompted to enter your password.\\n\n"
 		exec curl -sSL https://raw.githubusercontent.com/acbuynak/ocri-vm-fix/main/runner.sh | sudo bash
 
 		exit
@@ -118,15 +118,15 @@ main() {
     
     
 	# Apply Fix
-	printf "\n\n Applying Fixes & Installing Additional ROS Packages\n\n" 
-	install_fixes
+	printf "\n\n ${COL_LIGHT_GREEN}Applying Fixes & Installing Additional ROS Packages${COL_NC}\n\n" 
+	#install_fixes
 	
 	# Install Simulation Environment (ROS Ignition/Gazebo)
-	printf "\n\n Installing ROS Physics Simulation Environment\n\n"
-	install_ros_ignition
+	printf "\n\n COL_LIGHT_GREENInstalling ROS Physics Simulation Environment${COL_NC}\n\n"
+	#install_ros_ignition
 	
 	# Example Packages
-	printf "\n\n Updating ROS2 Example Package\n\n"
+	printf "\n\n COL_LIGHT_GREENUpdating ROS2 Example Package${COL_NC}\n\n"
 	add_ros2_example_package
 	
 	# Update ROS
@@ -134,10 +134,10 @@ main() {
 	# rosdep update
 	
 	# Final APT Cleanup
-	apt autoremove -y
+	#apt autoremove -y
 	
 	# Report Done
-	printf "\n\n DONE! You're ready to learn ROS!\n\n"
+	printf "\n\n ${TICK}${COL_LIGHT_GREEN}  DONE! You're ready to learn ROS!${COL_NC}\n\n"
 }
 
 
