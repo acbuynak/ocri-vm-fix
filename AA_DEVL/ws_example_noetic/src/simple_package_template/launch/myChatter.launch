@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    
+    <!-- Start Talker Node -->
+    <node pkg="rospy_tutorials" type="talker" name="talker" output="screen" />
+
+    <!-- Start Listener Node -->
+    <node pkg="rospy_tutorials" type="listener" name="listener" output="screen" />
+
+</launch>

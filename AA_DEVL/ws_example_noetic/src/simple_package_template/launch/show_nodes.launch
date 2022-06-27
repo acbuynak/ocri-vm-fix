@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    
+    <!-- Start RQT with an existing configuration file -->
+    <node name = "show_nodes" pkg = "rqt_gui" type = "rqt_gui" args = "--perspective-file $(find simple_package_template)/config/node_graph.perspective"/>
+
+</launch>
+
+
+

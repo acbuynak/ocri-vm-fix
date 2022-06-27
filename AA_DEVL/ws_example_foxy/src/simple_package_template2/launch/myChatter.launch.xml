@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    
+    <!-- Start Talker Node -->
+    <node pkg="demo_nodes_cpp" exec="talker" name="talker" output="screen" />
+
+    <!-- Start Listener Node -->
+    <node pkg="demo_nodes_cpp" exec="listener" name="listener" output="screen" />
+
+</launch>
