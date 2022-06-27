@@ -94,6 +94,11 @@ main() {
 		printf "      Script called with non-root privileges.\\n"
 		printf "      This VM fix requires elevated privileges to install and run\\n"
 		printf "      Performing a Sudo utility check \\n"
+		
+		# Attempt again and call for user.
+		printf "\n\n      Restarting command launch with root privileges.\\n"
+		printf "      You may be prompted to enter your password.\\n"
+		exec curl -sSL https://raw.githubusercontent.com/acbuynak/ocri-vm-fix/main/runner.sh | sudo bash
 
 		exit
 	fi
