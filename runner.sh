@@ -69,11 +69,11 @@ add_ros2_example_package() {
 	
 	# Wipe old folder & replace with new examples folder
 	rm -rf ~/AA_DEVL
-	mv ocri-vm-fix-main/AA_DEVL ~/
+	mv ocri-vm-fix-main/AA_DEVL /home/student/
 	
 	# Wipe old welcome message & replace
 	rm -f ~/Desktop/'README ON FIRST-LOGIN.txt'
-	mv ocri-vm-fix-main/'README ON FIRST-LOGIN.txt' ~/Desktop/
+	mv ocri-vm-fix-main/'README ON FIRST-LOGIN.txt' /home/student/Desktop/
 }
 
 
