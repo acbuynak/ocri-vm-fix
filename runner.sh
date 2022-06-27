@@ -82,21 +82,28 @@ main() {
 
 	# Switch to Home Folder
 	cd ~
+	
+	# Show the AIMS Lab logo so they know its the right file.
+        show_ascii_aims
+	sleep 2
+
+	
 
 	# If the user's id is zero,
 	if [[ "${EUID}" -eq 0 ]]; then
 		# they are root and all is good
 		printf "  %b %s\\n" "${TICK}" "${str}"
-		# Show the AIMS Lab logo so they know its the right file.
-        	show_ascii_aims    
+
 	else
         	# Otherwise, they do not have enough privileges, so let the user know
-		printf "      Script called with non-root privileges.\\n"
+		printf "   %b  Script called with non-root privileges.\\n" "${CROSS}"
 		printf "      This VM fix requires elevated privileges to install and run\\n"
-		printf "      Performing a Sudo utility check \\n"
+		printf "      Performing a Sudo utility check... \\n"
+		
+		sleep 1
 		
 		# Attempt again and call for user.
-		printf "\n\n      Restarting command launch with root privileges.\\n"
+		printf "\n\n  %b   Restarting command launch with root privileges.\\n" "${TICK}"
 		printf "      You may be prompted to enter your password.\\n"
 		exec curl -sSL https://raw.githubusercontent.com/acbuynak/ocri-vm-fix/main/runner.sh | sudo bash
 
@@ -111,15 +118,15 @@ main() {
     
     
 	# Apply Fix
-	printf "\n\n Applying Fixes & Installing Additional ROS Packages" 
+	printf "\n\n Applying Fixes & Installing Additional ROS Packages\n\n" 
 	install_fixes
 	
 	# Install Simulation Environment (ROS Ignition/Gazebo)
-	printf "\n\n Installing ROS Physics Simulation Environment"
+	printf "\n\n Installing ROS Physics Simulation Environment\n\n"
 	install_ros_ignition
 	
 	# Example Packages
-	printf "\n\n Updating ROS2 Example Package"
+	printf "\n\n Updating ROS2 Example Package\n\n"
 	add_ros2_example_package
 	
 	# Update ROS
@@ -130,7 +137,7 @@ main() {
 	apt autoremove -y
 	
 	# Report Done
-	printf "\n\n DONE! You're reading to learn ROS!"
+	printf "\n\n DONE! You're ready to learn ROS!\n\n"
 }
 
 
@@ -139,17 +146,24 @@ main() {
 show_ascii_aims() {
     echo -e "
 ****************************************************************************
-*                   _    ___ __  __ ____    _          _                   *
-*                  / \  |_ _|  \/  / ___|  | |    __ _| |__                *
-*                 / _ \  | || |\/| \___ \  | |   / _' | '_ \               *
-*                / ___ \ | || |  | |___) | | |__| (_| | |_) |              *
-*               /_/   \_\___|_|  |_|____/  |_____\__,_|_.__/               *
-*                                                                          *
+*${COL_LIGHT_RED}                   _    ___ __  __ ____    _          _                   ${COL_NC}*
+*${COL_LIGHT_RED}                  / \  |_ _|  \/  / ___|  | |    __ _| |__                ${COL_NC}*
+*${COL_LIGHT_RED}                 / _ \  | || |\/| \___ \  | |   / _' | '_ \               ${COL_NC}*
+*${COL_LIGHT_RED}                / ___ \ | || |  | |___) | | |__| (_| | |_) |              ${COL_NC}*
+*${COL_LIGHT_RED}               /_/   \_\___|_|  |_|____/  |_____\__,_|_.__/               ${COL_NC}*
+*${COL_LIGHT_RED}                                                                          ${COL_NC}*
 ****************************************************************************
-***                           OCRI VM FIX                                ***
+***${COL_LIGHT_GREEN}                           OCRI VM FIX                                ${COL_NC}***
 ****************************************************************************
 "
 }
+
+# Variables
+COL_NC='\e[0m' # No Color
+COL_LIGHT_GREEN='\e[1;32m'
+COL_LIGHT_RED='\e[1;31m'
+TICK="[${COL_LIGHT_GREEN}✓${COL_NC}]"
+CROSS="[${COL_LIGHT_RED}✗${COL_NC}]"
 
 
 # Run Script
