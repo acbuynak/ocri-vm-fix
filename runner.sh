@@ -77,6 +77,7 @@ add_ros2_example_package() {
 	
 	# Remove Downloaded Folder
 	rm -rf ocri-vm-fix-main
+	rm -rf ocri-vm-fix-main.zip
 }
 
 
