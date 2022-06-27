@@ -65,7 +65,7 @@ add_ros2_example_package() {
 	apt install unzip
 	
 	# Decompress
-	unzip -po ocri-vm-fix-main.zip
+	unzip -o ocri-vm-fix-main.zip
 	
 	# Wipe old folder & replace with new examples folder
 	rm -rf ~/AA_DEVL
