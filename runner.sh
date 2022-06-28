@@ -23,7 +23,7 @@ install_fixes() {
 	# Perception Packages
 	apt install -y ros-foxy-image-publisher
 	apt install -y ros-foxy-realsense2-camera
-	apt install -y ros-foxy-realsense2-description
+# 	apt install -y ros-foxy-realsense2-description
 
 	# ROS Industrial packages
 	apt install -y ros-foxy-ros-industrial-cmake-boilerplate
