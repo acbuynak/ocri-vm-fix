@@ -44,6 +44,19 @@ install_fixes() {
 
 }
 
+install_sublime_text() {
+
+	apt-get install wget apt-transport-https
+
+	# Setup for Install
+	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
+	echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
+
+	# Install
+	apt-get update
+	apt-get install sublime-text
+}
+
 
 install_ros_ignition() {
 
@@ -132,6 +145,10 @@ main() {
 	# Install Simulation Environment (ROS Ignition/Gazebo)
 	printf "\n\n COL_LIGHT_GREENInstalling ROS Physics Simulation Environment${COL_NC}\n\n"
 	install_ros_ignition
+	
+	# Install Sublime Text
+	printf "\n\n COL_LIGHT_GREENInstalling Sublime Text ${COL_NC}\n\n"
+	install_sublime_text
 	
 	# Example Packages
 	printf "\n\n COL_LIGHT_GREENUpdating ROS2 Example Package${COL_NC}\n\n"
