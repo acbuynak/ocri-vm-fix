@@ -8,16 +8,20 @@
 #
 # Install with this one-line commands (on Linux):
 #
-# curl -sSL https:/go.osu.edu/ros-vm-fix | bash
+# curl -sSL https://go.osu.edu/ros-vm-fix | bash
 #
-
 
 install_fixes() {
 
+	# ReInstall Desktop-* if any packages missed
+	apt install -y ros-foxy-desktop
+	apt install -y ros-foxy-ros1-bridge 
+
+	# Colcon Build Tool
 	apt install -y python3-colcon-common-extensions python3-argcomplete
-	apt install -y ros-foxy-ros1-bridge ros-foxy-xacro
 
 	# MoveIt
+	apt install -y ros-foxy-xacro
 	apt install -y ros-foxy-moveit
 
 	# Perception Packages
@@ -33,6 +37,7 @@ install_fixes() {
 	apt install -y ros-foxy-joint-state-publisher-gui
 	apt install -y ros-foxy-joint-state-controller
 	apt install -y ros-foxy-position-controllers
+	apt install -y ros-foxy-ifopt
 
 	# Dependencies needed for building/managing ROS packages
 	apt install -y python3-rosdep
@@ -43,20 +48,6 @@ install_fixes() {
 	apt install -y build-essential
 
 }
-
-install_sublime_text() {
-
-	apt-get install wget apt-transport-https
-
-	# Setup for Install
-	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
-	echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-
-	# Install
-	apt-get update
-	apt-get install sublime-text
-}
-
 
 install_ros_ignition() {
 
@@ -145,11 +136,7 @@ main() {
 	# Install Simulation Environment (ROS Ignition/Gazebo)
 	printf "\n\n ${COL_LIGHT_GREEN}Installing ROS Physics Simulation Environment${COL_NC}\n\n"
 	install_ros_ignition
-	
-	# Install Sublime Text
-	printf "\n\n ${COL_LIGHT_GREEN}Installing Sublime Text ${COL_NC}\n\n"
-	install_sublime_text
-	
+		
 	# Example Packages
 	printf "\n\n ${COL_LIGHT_GREEN}Updating ROS2 Example Package${COL_NC}\n\n"
 	add_ros2_example_package
